@@ -32,5 +32,6 @@ RUN rm ~/tools/oss-cad-suite-linux-x64-20250107.tgz
 ENV PATH=$PATH:~/tools/oss-cad-suite/bin
 
 # Python Packages
-RUN pip install cocotb pytest
+RUN pip install cocotb pytest torch torchvision
+
 ENV PATH=$PATH:~/.local/bin
