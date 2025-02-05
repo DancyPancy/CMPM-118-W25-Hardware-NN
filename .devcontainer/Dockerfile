@@ -33,5 +33,6 @@ ENV PATH=$PATH:~/tools/oss-cad-suite/bin
 
 # Python Packages
 RUN pip install cocotb pytest torch torchvision
-
 ENV PATH=$PATH:~/.local/bin
+
+RUN pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu
