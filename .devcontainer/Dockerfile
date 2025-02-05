@@ -33,3 +33,4 @@ ENV PATH=$PATH:~/tools/oss-cad-suite/bin
 
 # Python Packages
 RUN pip install cocotb pytest
+ENV PATH=$PATH:~/.local/bin
