@@ -1,0 +1,16 @@
+{
+    "build": { "dockerfile": "Dockerfile" },
+    "features": {
+    },
+    "customizations": {
+      "vscode": {
+      "extensions": [   "AndrewNolte.vscode-system-verilog",
+                        "hediet.vscode-drawio",
+                        "tomoki1207.pdf",
+                        "SimonSiefke.svg-preview",
+                        "surfer-project.surfer"
+                    ]
+      }
+    }
+  }
+  
