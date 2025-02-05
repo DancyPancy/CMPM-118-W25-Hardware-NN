@@ -27,7 +27,7 @@ RUN mkdir -p ~/tools
 
 # Install OSS CAD Suite
 RUN wget -O ~/tools/oss-cad-suite-linux-x64-20250107.tgz https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2025-01-07/oss-cad-suite-linux-x64-20250107.tgz
-RUN tar -xzf ~/tools/oss-cad-suite-linux-x64-20250107.tgz -C ~/Utils
+RUN tar -xzf ~/tools/oss-cad-suite-linux-x64-20250107.tgz -C ~/tools
 RUN rm ~/tools/oss-cad-suite-linux-x64-20250107.tgz
 ENV PATH=$PATH:~/tools/oss-cad-suite/bin
 
