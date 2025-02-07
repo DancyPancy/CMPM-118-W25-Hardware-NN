@@ -1,4 +1,3 @@
-
 # Path to repo root
 REPO_ROOT ?= $(shell git rev-parse --show-toplevel) 
 
@@ -6,17 +5,20 @@ REPO_ROOT ?= $(shell git rev-parse --show-toplevel)
 IVERILOG ?= iverilog
 VERILATOR ?= verilator
 
+
 .PHONY: clean lint
 
 # test hardcoded to use iverilog for now
 test: 
-	REPO_ROOT=$(REPO_ROOT) SIM=verilator pytest test_$(DATASET).py -rA
+	REPO_ROOT=$(REPO_ROOT) SIM=icarus WAVES=1 MODEL_DIR=$(MODEL_DIR) pytest ../sim/$(DATASET)/test_runner.py
+	rm -rf $(REPO_ROOT)/sim/$(DATASET)/__pycache__
+	rm -rf $(REPO_ROOT)/.pytest_cache
+	
 
 # lint runs the Verilator linter on your code
 lint:
-	$(VERILATOR) --lint-only -top $(SIM_TOP) $(SIM_SRCS) -Wall
+	verilator --lint-only -top $(SIM_TOP) $(SIM_SRCS) -Wall
 
 # clean sim build
 clean:
 	rm -rf run
-	rm -rf __pycache__

@@ -1,2 +1,8 @@
+data
 run
 __pycache__
+
+*.xml
+*.f
+*.vvp
+*.txt
