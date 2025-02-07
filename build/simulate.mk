@@ -5,8 +5,11 @@ REPO_ROOT ?= $(shell git rev-parse --show-toplevel)
 IVERILOG ?= iverilog
 VERILATOR ?= verilator
 
+# get the sources holy jank
+SIM_SRCS = $(shell python3 $(REPO_ROOT)/utils/get_filelist.py)
+SIM_TOP = $(shell python3 $(REPO_ROOT)/utils/get_top.py)
 
-.PHONY: clean lint
+.PHONY: clean lint help
 
 # test hardcoded to use iverilog for now
 test: 
@@ -22,3 +25,10 @@ lint:
 # clean sim build
 clean:
 	rm -rf run
+
+help:
+	@echo "  test: simulates with icarus make sure you set your" 
+	@echo "        dataset in your Makefile and your files in"
+	@echo "        filelist.json"
+	@echo "  lint: Run the Verilator linter on all source files"
+	@echo "  clean: Remove all compiler outputs."
