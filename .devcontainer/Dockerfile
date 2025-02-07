@@ -29,10 +29,10 @@ RUN mkdir -p ~/tools
 RUN wget -O ~/tools/oss-cad-suite-linux-x64-20250107.tgz https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2025-01-07/oss-cad-suite-linux-x64-20250107.tgz
 RUN tar -xzf ~/tools/oss-cad-suite-linux-x64-20250107.tgz -C ~/tools
 RUN rm ~/tools/oss-cad-suite-linux-x64-20250107.tgz
-ENV PATH=$PATH:~/tools/oss-cad-suite/bin
+ENV PATH=$PATH:/home/student/tools/oss-cad-suite/bin
 
 # Python Packages
-RUN pip install cocotb pytest
-ENV PATH=$PATH:~/.local/bin
+RUN pip install cocotb cocotb-test pytest
+ENV PATH=$PATH:/home/student/.local/bin
 
 RUN pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu
