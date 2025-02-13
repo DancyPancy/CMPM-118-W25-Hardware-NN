@@ -72,16 +72,17 @@ async def batch_test_mnist(dut, idx, images, labels):
     with open("test_results.txt", mode) as f:
         f.write(f"Batch {idx+1}:\tScore {score}/{labels.shape[0]},\tAccuracy {score/labels.shape[0]*100}%\n")
 
-def generate_batchtests(test_function, test_loader, batches=16):
+def generate_batchtests(test_function, test_loader, epochs=16):
     for idx, test_data in enumerate(test_loader):
-        if idx >= batches:
+        if idx >= epochs:
             break
         images, labels = test_data
         tf=TestFactory(test_function)
         tf.add_option(("idx", "images", "labels"), [(idx, images, labels)])
         tf.generate_tests(postfix=str(idx))
 
-batch_size = 128
-batches = 16
+
+batch_size = int(os.environ['BATCH_SIZE'])
+epochs = int(os.environ['EPOCHS'])
 test_loader = get_testloader_mnist(batch_size)
-generate_batchtests(batch_test_mnist, test_loader, batches)
+generate_batchtests(batch_test_mnist, test_loader, epochs)

@@ -13,7 +13,8 @@ SIM_TOP = $(shell python3 $(REPO_ROOT)/utils/get_top.py)
 
 # test hardcoded to use iverilog for now
 test: 
-	REPO_ROOT=$(REPO_ROOT) SIM=icarus WAVES=1 MODEL_DIR=$(MODEL_DIR) pytest ../sim/$(DATASET)/test_runner.py
+	REPO_ROOT=$(REPO_ROOT) SIM=icarus WAVES=1 MODEL_DIR=$(MODEL_DIR) BATCH_SIZE=$(BATCH_SIZE) EPOCHS=$(EPOCHS) \
+	 pytest ../sim/$(DATASET)/test_runner.py
 	rm -rf $(REPO_ROOT)/sim/$(DATASET)/__pycache__
 	rm -rf $(REPO_ROOT)/.pytest_cache
 	
