@@ -1,5 +1,5 @@
 REPO_ROOT ?= $(shell git rev-parse --show-toplevel)
-MODEL_DIR = $(shell pwd)
+MODEL_DIR = $(shell pwd)/
 
 # set dataset
 DATASET = mnist
