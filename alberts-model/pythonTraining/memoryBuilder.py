@@ -24,6 +24,9 @@ for strvalue in values:
 
 
 
+
+
+
 # Write to a Verilog memory file
 with open("weights.mem", "w") as f:
     for w in fixed_point_weights:
