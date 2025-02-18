@@ -1,0 +1,6 @@
+{
+    "top": "model",
+    "files":
+     ["template-model/model.sv"
+    ]
+}
