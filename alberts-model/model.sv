@@ -13,6 +13,28 @@ module model
 	,input	[0:0]	ready_i
 	);
 
+
+
+    logic [0:783] currentweightsaddy;
+	logic [0:7] currentweight;
+    weights my_weights (
+		.clk_i(clk_i),
+    	.rom_addr_i(currentweightsaddy),
+    	.weight_o(currentweights)
+    );
+
+
+	// flip flop for data_o
+	logic [3:0] data_q, data_d
+	always_ff @( posedge clk_i ) begin 
+	end
+
+
 	/* Code */
+	always_comb begin 
+		
+
+	end
+	
 
 endmodule
