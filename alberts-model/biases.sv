@@ -1,4 +1,4 @@
-module biases#() (
+module biases (
     input  logic                  clk_i,
     input  logic           [9:0] rom_addr_i,
     input logic reset_i,

@@ -13,28 +13,33 @@ module model
 	,input	[0:0]	ready_i
 	);
 
+	Goals
+	have a counter that sets does current row, put it in a flipflop
+	once row is final set valid to high
+	Ready Valid -> 
 
 
-    logic [0:783] currentweightsaddy;
-	logic [0:7] currentweight;
-    weights my_weights (
-		.clk_i(clk_i),
-    	.rom_addr_i(currentweightsaddy),
-    	.weight_o(currentweights)
-    );
+    logic [9:0] outVector_d, outVector_q
+	logic [4:0] curRow_d, curRow_q
+    always_ff @(posedge clk_i) begin  
+        if(reset_i || !valid_i || !ready_i) begin
+			outVector_q <= 0;
+			curRow_q <= 0;
+        end else begin
+			outVector_q <= outVector_d;
+			curRow_q <= curRow_d;
+        end
+    end
 
-
-	// flip flop for data_o
-	logic [3:0] data_q, data_d
-	always_ff @( posedge clk_i ) begin 
+	always_comb begin
+		curRow_d = curRow_q
+		outVector_d
 	end
+	
 
 
-	/* Code */
-	always_comb begin 
-		
 
-	end
+
 	
 
 endmodule

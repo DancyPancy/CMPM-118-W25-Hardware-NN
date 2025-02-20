@@ -2,6 +2,7 @@
     "top": "model",
     "files":
      ["alberts-model/model.sv",
-      "alberts-model/weights.sv"
+      "alberts-model/weights.sv",
+      "alberts-model/biases.sv"
     ]
 }
