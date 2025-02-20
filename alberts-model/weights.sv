@@ -1,21 +1,30 @@
 module weights #() (
     input  logic                  clk_i,
-    input  logic           [783:0] rom_addr_i,
-    output logic           [7:0] weight_o
+    input  logic           [9:0] rom_addr_i,
+    input logic reset_i,
+    output logic           [783:0] weight_o
 );
 
-    reg [15:0] test_memory [0:783];
+    reg [783:0] test_memory [0:9];
+
     initial begin
-        $display("Loading rom.");
+        $display("Loading rom for weights.");
         $readmemh("weights.mem", test_memory);
     end
 
-    logic [7:0] weight_q;
+    logic [783:0] row_q, row_d;
 
     always_ff @(posedge clk_i) begin  
-        weight_q <= test_memory[rom_addr_i];
+        if(reset_i) begin
+            row_q <= 0;
+        end else begin
+            row_q <= row_d;
+        end
     end
 
-    assign weight_o = weight_q;
+  always_comb begin
+        row_d = test_memory[rom_addr_i]; 
+    end
 
+    assign weight_o = row_q;
 endmodule

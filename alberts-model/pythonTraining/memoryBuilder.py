@@ -35,7 +35,8 @@ with open("weights.mem", "w") as f:
                 # Convert to signed 8-bit value using two's complement
                 if fixed_point_value < 0:
                     fixed_point_value = (fixed_point_value + (1 << 8)) & 0xFF  
-                f.write(f"{fixed_point_value:08b}\n")  # Format as 8-bit binary
+                f.write(f"{fixed_point_value:08b}")  # Format as 8-bit binary
+            f.write("\n")
 
 
 
