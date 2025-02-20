@@ -4,7 +4,7 @@ module weights #() (
     output logic           [7:0] weight_o
 );
 
-    reg [7:0] test_memory [0:783];
+    reg [15:0] test_memory [0:783];
     initial begin
         $display("Loading rom.");
         $readmemh("weights.mem", test_memory);
