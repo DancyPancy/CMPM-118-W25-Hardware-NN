@@ -23,11 +23,32 @@ for i in range(1,len(startofWeightsAndBias)-1,2):
 biases.append(lines[startofWeightsAndBias[-1]+1:-1])
 
 
+# Write to a Verilog memory file for the weights
+with open("weights.mem", "w") as f:
+    for matrix in weights:
+        for matrixRow in matrix:
+            strsVals = matrixRow.split()
+            for strVal in strsVals:
+                toWrite = float(strVal)  
+                #idk how to fixed point but its 1.7 scaling and this what GPT gave me
+                fixed_point_value = int(toWrite * (2**7))  # Scale by 2^7 for 7 fractional bits
+                # Convert to signed 8-bit value using two's complement
+                if fixed_point_value < 0:
+                    fixed_point_value = (fixed_point_value + (1 << 8)) & 0xFF  
+                f.write(f"{fixed_point_value:08b}\n")  # Format as 8-bit binary
 
 
 
 
-# Write to a Verilog memory file
-# with open("weights.mem", "w") as f:
-#     for w in fixed_point_weights:
-#         f.write(f"{w:016b}\n")  # 16-bit binary format
+# Write to a Verilog memory file for the biases
+with open("biases.mem", "w") as f:
+    for colVector in biases:
+        for strVal in colVector:
+            toWrite = float(strVal)  
+            #idk how to fixed point but its 1.7 scaling and this what GPT gave me
+            fixed_point_value = int(toWrite * (2**7))  # Scale by 2^7 for 7 fractional bits
+            # Convert to signed 8-bit value using two's complement
+            if fixed_point_value < 0:
+                fixed_point_value = (fixed_point_value + (1 << 8)) & 0xFF  
+            f.write(f"{fixed_point_value:08b}\n")  # Format as 8-bit binary
+
