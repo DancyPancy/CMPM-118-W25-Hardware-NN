@@ -1,6 +1,6 @@
 module biases (
     input  logic                  clk_i,
-    input  logic           [9:0] rom_addr_i,
+    input  logic           [3:0] rom_addr_i,
     input logic reset_i,
     output logic           [7:0] bias_o
 );
